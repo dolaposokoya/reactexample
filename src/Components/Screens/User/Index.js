@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Header from '../../Shared/Header/Header'
+import photo from '../../../Assets/Images/photo.jpg'
 
 export default class Index extends Component {
 
@@ -22,29 +23,29 @@ export default class Index extends Component {
         const userData = localStorage.getItem('user')
         if (userData === null) {
             setTimeout(() => this.setState({ loading: false }), 2000)
-            return false
+            this.props.history.push('/');
         }
         else {
-            // const data = await fetch(url)
-            // const response = await data.json()
-            // console.log('Respoonse ', response)
             this.setState({ user: JSON.parse(userData), imagesrc: url })
             setTimeout(() => this.setState({ loading: false }), 2000)
         }
     }
+
     render() {
         const { user, loading, imagesrc } = this.state
         const { history } = this.props
         return (
-            <div>
+            <>
                 <Header auth={true} imagesrc={imagesrc} history={history} />
                 {(user && !loading) ? <div>
                     <h2>Welcome {user.first_name}</h2>
-                    <img src={imagesrc} alt="laptop image" height={400} width={400} style={{
-                        borderRadius: '10px'
+                    <img src={imagesrc} alt="laptop image" style={{
+                        borderRadius: '10px',
+                        width: '200px',
+                        height: '200px'
                     }} />
                 </div> : <h2>Loading</h2>}
-            </div>
+            </>
         )
     }
 }

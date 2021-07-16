@@ -106,7 +106,7 @@ export default class Index extends Component {
     render() {
         const { first_name, last_name, email, password, reapeat_password, firstNameError, lastNameError, emailError, passwordError, repeatPasswordError } = this.state
         return (
-            <div>
+            <>
                 <Header />
                 <div className="loginForm">
                     <form>
@@ -145,7 +145,7 @@ export default class Index extends Component {
                         </div>
                     </form>
                 </div>
-            </div>
+            </>
         )
     }
 }
